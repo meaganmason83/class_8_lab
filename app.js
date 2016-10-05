@@ -321,8 +321,22 @@ function makeTable2(arr) {
 }
 makeTable2(allKiosks);
 
-function buttonClick() {
+function buttonClick(event) {
   alert('The button has been clicked!');
+  console.log(event.target);
+}
+
+function formSubmit(event) {
+  event.preventDefault();
+  console.log(event.target.name.value);
+  console.log(event.target.total.value);
+
+  var name = event.target.name.value;
+  var total = event.target.total.value;
+
+  var newKiosk = new Kiosk(name, total);
+  // newKiosk.makeAllKiosks();
 }
 
 button.addEventListener('click', buttonClick);
+form.addEventListener('submit', formSubmit);
