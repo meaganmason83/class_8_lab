@@ -4,6 +4,8 @@ var allKiosks = [];
 var grandTotals = {
   location: 0
 };
+var form = document.getElementById('form');
+var button = document.getElementById('button');
 
 function Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds) {
    this.name = name;
@@ -102,8 +104,8 @@ function Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds) {
     Kiosk.prototype.generateLocationTotals = function() {
         for (var i = 0; i < allKiosks.length; i++) {
           grandTotals.location += allKiosks.totalBeansPerDay;
-          console.log(allKiosks.totalBeansPerDay);
-          console.log(grandTotals.location);
+          // console.log(allKiosks.totalBeansPerDay);
+          // console.log(grandTotals.location);
         }
     };
 
@@ -318,3 +320,9 @@ function makeTable2(arr) {
   }
 }
 makeTable2(allKiosks);
+
+function buttonClick() {
+  alert('The button has been clicked!');
+}
+
+button.addEventListener('click', buttonClick);
