@@ -32,10 +32,10 @@
           <input type="number" name="maxCustomer" min="0" required>
 
           <label for="averageCups">Average Cups</label>
-          <input type="number" name="averageCups" min="0" required>
+          <input type="number" name="averageCups" min="0.0" step="any" required>
 
           <label for="averagePounds">Average Pounds of Beans</label>
-          <input type="number" name="averagePounds" min="0" required>
+          <input type="number" name="averagePounds" min="0.00" step="any" required>
 
           <input type="submit" value="Add the item">
         </fieldset>
@@ -45,7 +45,10 @@
         <thead>
           <tr>
             <th>Kiosk</th>
-            <th>Total</th>
+            <th>Min Customers</th>
+            <th>Max Customers</th>
+            <th> Average Cups</th>
+            <th>Average Pounds</th>
           </tr>
         </thead>
 
@@ -58,7 +61,7 @@
         </tfoot>
       </table>
 
-      <button id="button">Push me!</button>
+      <button id="button">Don't push me!</button>
 
       <h1>Beans Needed By Location Each Day</h1>
       <table id="populate-table1">
