@@ -330,7 +330,7 @@ function formSubmit(event) {
   event.preventDefault();
 
   var name = event.target.name.value;
-  var total = event.target.total.value;
+  var total = event.target.totalBeansPerDay.value;
 
   var newKiosk = new Kiosk(name, total);
 
