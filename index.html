@@ -6,14 +6,53 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
+    </head>
+    <body>
     <header>
       <img class='pic' src="https://github.com/codefellows/seattle-201n6/blob/master/class-06-dom--objects--domain_modeling/lab/assets/campfire-coffee.jpg?raw=true">
     </header>
+  <body>
     <main>
-      <h1>Beans Needed By Location Each Day</h1>
-    <table id="populate-table1">
+      <h1>Campfire Coffee Data Page</h1>
+      <form id="form">
+        <fieldset>
+          <legend>Add a new Kiosk</legend>
+
+          <!--make a block-level input  -->
+          <!-- <div> -->
+            <label for="name">Kiosk location:</label>
+            <input type="text" name="name" required>
+          <!-- </div> -->
+
+          <!--everything else in the form will be inline  -->
+          <label for="total">Location Total:</label>
+          <input type="number" name="price" min="0" required>
+
+          <input type="submit" value="Add the item">
+        </fieldset>
+      </form>
+
+      <table id="table">
+            <thead>
+              <tr>
+                <th>Kiosk</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+
+            <tbody id="table-body">
+
+            </tbody>
+
+            <tfoot>
+
+            </tfoot>
+        </table>
+
+        <button id="button">Push me!</button>
+
+        <h1>Beans Needed By Location Each Day</h1>
+        <table id="populate-table1">
         <tr>
           <th></th>
           <th>Daily Location Total</th>
@@ -56,7 +95,7 @@
           <th>8:00pm</th>
         </tr>
       </table>
-  </main>
+      </main>
   <script type="text/javascript" src="app.js">
   </script>
   </body>
