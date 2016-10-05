@@ -16,32 +16,32 @@
       <h1>Campfire Coffee Data Page</h1>
       <form id="form" autocomplete="off">
         <fieldset>
-          <legend>Add a new Kiosk</legend>
+          <legend>Add a new Kiosk!</legend>
 
           <!--make a block-level input  -->
           <!-- <div> -->
-          <label for="name">Kiosk Location:</label>
-          <input type="text" name="name" required>
+          <p><label for="name">Kiosk Location:</label>
+          <input type="text" name="name" required></p>
           <!-- </div> -->
 
           <!--everything else in the form will be inline  -->
-          <label for="minCustomer">Minimum Customer</label>
-          <input type="number" name="minCustomer" min="0" required>
+          <p><label for="minCustomer">Minimum Customer</label>
+          <input type="number" name="minCustomer" min="0" required></p>
 
-          <label for="maxCustomer">Maximum Customer</label>
-          <input type="number" name="maxCustomer" min="0" required>
+          <p><label for="maxCustomer">Maximum Customer</label>
+          <input type="number" name="maxCustomer" min="0" required></p>
 
-          <label for="averageCups">Average Cups</label>
-          <input type="number" name="averageCups" min="0.0" step="any" required>
+          <p><label for="averageCups">Average Cups</label>
+          <input type="number" name="averageCups" min="0.0" step="any" required></p>
 
-          <label for="averagePounds">Average Pounds of Beans</label>
-          <input type="number" name="averagePounds" min="0.00" step="any" required>
+          <p><label for="averagePounds">Average Pounds of Beans</label>
+          <input type="number" name="averagePounds" min="0.00" step="any" required></p>
 
           <input type="submit" value="Add the item">
         </fieldset>
       </form>
 
-      <table id="table">
+      <!-- <table id="table">
         <thead>
           <tr>
             <th>Kiosk</th>
@@ -50,18 +50,18 @@
             <th> Average Cups</th>
             <th>Average Pounds</th>
           </tr>
-        </thead>
+        </thead> -->
 
-        <tbody id="table-body">
+        <!-- <tbody id="table-body">
 
         </tbody>
 
         <tfoot>
 
-        </tfoot>
+        </tfoot> -->
       </table>
 
-      <button id="button">Don't push me!</button>
+      <button id="button">Don't push me! (just kidding)</button>
 
       <h1>Beans Needed By Location Each Day</h1>
       <table id="populate-table1">
