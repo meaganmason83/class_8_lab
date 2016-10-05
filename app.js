@@ -324,7 +324,7 @@ makeTable2(allKiosks);
 
 //form and event listener
 function buttonClick(event) {
-  alert('The button has been clicked!');
+  alert('The button has been clicked! Now your computer will crash.');
 }
 
 function formSubmit(event) {

@@ -46,6 +46,7 @@ table {
   border: 1px solid;
   border
   margin-top: 1em;
+  margin-right: 500px;
 }
 
 th, td {
@@ -56,4 +57,19 @@ th, td {
 ul {
     width: 57%;
     margin: auto;
+}
+
+fieldset {
+  width: 400px;
+  margin-left: 200px;
+}
+
+button {
+  margin-left: 200px;
+}
+
+legend {
+  font-family: 'Shadows Into Light', cursive;
+  color: #741D16;
+  font-size: 25px;
 }
