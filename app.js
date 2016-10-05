@@ -322,6 +322,7 @@ function makeTable2(arr) {
 }
 makeTable2(allKiosks);
 
+//form and event listener
 function buttonClick(event) {
   alert('The button has been clicked!');
 }
@@ -330,9 +331,12 @@ function formSubmit(event) {
   event.preventDefault();
 
   var name = event.target.name.value;
-  var total = event.target.totalBeansPerDay.value;
+  var minCustomer = event.target.minCustomer.value;
+  var maxCustomer = event.target.maxCustomer.value;
+  var averageCups = event.target.averageCups.value;
+  var averagePounds = event.target.averagePounds.value;
 
-  var newKiosk = new Kiosk(name, total);
+  var newKiosk = new Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds);
 
   makeAllKiosks(newKiosk);
   makeARow(newKiosk);
