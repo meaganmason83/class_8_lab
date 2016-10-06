@@ -36,7 +36,7 @@ function Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds) {
 
 Kiosk.prototype.getRandomCustomer = function() {
   this.getRandomCustomer = function(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    return Math.floor(Math.random() * (max - min) + 1 + min);
   };
 
   Kiosk.prototype.generateCustomerData = function() {
@@ -103,14 +103,6 @@ Kiosk.prototype.getRandomCustomer = function() {
   }
 };
 
-// Kiosk.prototype.generateLocationTotals = function() {
-//   for (var i = 0; i < allKiosks.length; i++) {
-//     grandTotals.location += allKiosks.totalBeansPerDay;
-//     // console.log(allKiosks.totalBeansPerDay);
-//     // console.log(grandTotals.location);
-//   }
-// };
-
 Kiosk.prototype.callMethods = function() {
   this.getRandomCustomer();
   this.generateCustomerData();
@@ -122,7 +114,6 @@ Kiosk.prototype.callMethods = function() {
   this.generateBeansData();
   this.generateEmployeeData();
   this.generateStringsForDOM();
-  // this.generateLocationTotals();
 }
 
 new Kiosk('Pike Place Market', 14, 35, 1.2, 0.34);
@@ -138,6 +129,53 @@ function makeAllKiosks() {
 }
 
 makeAllKiosks();
+
+var kioskTable = {
+  dailyBeanTotal: 0,
+  hourlyBeanTotal: [],
+  dailyEmployeeTotal: 0,
+  hourlyEmployeeTotal: [],
+  hours: ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm']
+};
+
+kioskTable.dailyBeanTotalData = function() {
+  for (var i = 0; i < allKiosks.length; i++) {
+    this.dailyBeanTotal += allKiosks[i].totalBeansPerDay;
+  }
+};
+
+kioskTable.hourlyBeanTotalData = function() {
+  for (var i = 0; i < this.hours.length; i++) {
+    var count = 0;
+      for(var j = 0; j < allKiosks.length; j++) {
+        count += allKiosks[j].totalBeansPerHour[i];
+      }
+        this.hourlyBeanTotal.push(parseFloat(count).toFixed(0));
+  }
+};
+
+kioskTable.dailyEmployeeTotalData = function() {
+  for (var i = 0; i < allKiosks.length; i++) {
+    this.dailyEmployeeTotal += allKiosks[i].employeesPerDay;
+  }
+};
+ kioskTable.hourlyEmployeeTotalData = function() {
+   for (var i = 0; i < this.hours.length; i++) {
+     var count = 0;
+     for (var j = 0; j < allKiosks.length; j++) {
+       count += allKiosks[j].employeesPerHour[i];
+     }
+     this.hourlyEmployeeTotal.push(count);
+   }
+ };
+
+function kioskTableMethods() {
+  kioskTable.dailyBeanTotalData();
+  kioskTable.hourlyBeanTotalData();
+  kioskTable.dailyEmployeeTotalData();
+  kioskTable.hourlyEmployeeTotalData();
+}
+kioskTableMethods();
 
 //reference to the id in html
 var tableEl = document.getElementById('populate-table1');
