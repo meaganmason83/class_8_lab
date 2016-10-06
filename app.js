@@ -186,9 +186,7 @@ function makeARow2(obj) {
   var rowEl = document.createElement('tr');
   //make a cell
   var cellElName = document.createElement('td');
-      //give it content
       cellElName.textContent = obj.name;
-      //append cell to row
       rowEl.appendChild(cellElName);
 
   var cellElEmp = document.createElement('td');
