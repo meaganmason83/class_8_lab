@@ -131,6 +131,7 @@ function makeAllKiosks() {
 makeAllKiosks();
 
 var kioskTable = {
+  name: 'Total',
   dailyBeanTotal: 0,
   hourlyBeanTotal: [],
   dailyEmployeeTotal: 0,
@@ -178,51 +179,55 @@ function kioskTableMethods() {
 kioskTableMethods();
 
 //reference to the id in html
-var tableEl = document.getElementById('populate-table1');
+var tableElBeans = document.getElementById('populate-beans');
 
-function makeARow(obj) {
+function makeBeansRow(obj) {
   var rowEl = document.createElement('tr');
-  //make a cell
+
   var cellElName = document.createElement('td');
-      //give it content
       cellElName.textContent = obj.name;
-      //append cell to row
       rowEl.appendChild(cellElName);
 
   var cellElBeans = document.createElement('td');
       cellElBeans.textContent = obj.totalBeansPerDay;
       rowEl.appendChild(cellElBeans);
 
-    //make this a grandtotal method instead of totalBeansPerHour
     for (var i = 0; i < obj.hoursOpen.length; i++) {
       var cellElHours = document.createElement('td');
         cellElHours.textContent = obj.totalBeansPerHour[i]
         rowEl.appendChild(cellElHours);
-        tableEl.appendChild(rowEl);
+        tableElBeans.appendChild(rowEl);
     }
-      //append row to the table
-      tableEl.appendChild(rowEl);
-
-  // var rowElTotals = document.createElement('tr');
-  //
-  // var cellElTotals = document.createElement('td');
-  //     cellElTotals.textContent = 'Totals';
-  //     rowElTotals.appendChild(cellElTotals);
-  //     tableEl.appendChild(rowElTotals);
+      tableElBeans.appendChild(rowEl);
 }
 
-function makeTable(arr) {
-  for (var index in arr) {
-    makeARow(arr[index]);
-  }
+function addBeansTotalRow() {
+  var rowElTotals = document.createElement('tr');
+
+  var cellElName = document.createElement('td');
+  cellElName.textContent = kioskTable.name;
+  rowElTotals.appendChild(cellElName);
+
+  var cellElTotal = document.createElement('td');
+  cellElTotal.textContent = kioskTable.dailyBeanTotal;
+  rowElTotals.appendChild(cellElTotal);
+
+  for (var i = 0; i < kioskTable.hours.length; i++) {
+    var cellElHours = document.createElement('td');
+      cellElHours.textContent = kioskTable.hourlyBeanTotal[i]
+      rowElTotals.appendChild(cellElHours);
+      tableElBeans.appendChild(rowElTotals);
+    }
+    tableElBeans.appendChild(rowElTotals);
 }
-makeTable(allKiosks);
 
-var tableEl2 = document.getElementById('populate-table2');
+addBeansTotalRow();
 
-function makeARow2(obj) {
+var tableEl2 = document.getElementById('populate-employees');
+
+function makeEmpRow(obj) {
   var rowEl = document.createElement('tr');
-  //make a cell
+
   var cellElName = document.createElement('td');
       cellElName.textContent = obj.name;
       rowEl.appendChild(cellElName);
@@ -231,30 +236,43 @@ function makeARow2(obj) {
       cellElEmp.textContent = obj.employeesPerDay;
       rowEl.appendChild(cellElEmp);
 
-    //make this a grandtotal method instead of totalBeansPerHour
     for (var i = 0; i < obj.hoursOpen.length; i++) {
       var cellElHours = document.createElement('td');
         cellElHours.textContent = obj.employeesPerHour[i]
         rowEl.appendChild(cellElHours);
         tableEl2.appendChild(rowEl);
     }
-      //append row to the table
       tableEl2.appendChild(rowEl);
-
-  // var rowElTotals = document.createElement('tr');
-  //
-  // var cellElTotals = document.createElement('td');
-  //     cellElTotals.textContent = 'Totals';
-  //     rowElTotals.appendChild(cellElTotals);
-  //     tableEl2.appendChild(rowElTotals);
 }
 
-function makeTable2(arr) {
+function addEmployeeTotalsRow() {
+  var rowElTotals = document.createElement('tr');
+
+  var cellElName = document.createElement('td');
+  cellElName.textContent = kioskTable.name;
+  rowElTotals.appendChild(cellElName);
+
+  var cellElTotal = document.createElement('td');
+  cellElTotal.textContent = kioskTable.dailyEmployeeTotal;
+  rowElTotals.appendChild(cellElTotal);
+
+  for (var i = 0; i < kioskTable.hours.length; i++) {
+    var cellElHours = document.createElement('td');
+      cellElHours.textContent = kioskTable.hourlyEmployeeTotal[i]
+      rowElTotals.appendChild(cellElHours);
+      tableEl2.appendChild(rowElTotals);
+    }
+    tableEl2.appendChild(rowElTotals);
+}
+addEmployeeTotalsRow();
+
+function makeTable(arr) {
   for (var index in arr) {
-    makeARow2(arr[index]);
+    makeBeansRow(arr[index]);
+    makeEmpRow(arr[index]);
   }
 }
-makeTable2(allKiosks);
+makeTable(allKiosks);
 
 //form and event listener
 function buttonClick(event) {
