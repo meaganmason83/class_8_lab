@@ -1,11 +1,8 @@
 'use strict';
 
 var allKiosks = [];
-var grandTotals = {
-  location: 0
-};
+
 var form = document.getElementById('form');
-// var button = document.getElementById('button');
 
 function Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds) {
   this.name = name;
@@ -131,7 +128,7 @@ function makeAllKiosks() {
 makeAllKiosks();
 
 var kioskTable = {
-  name: 'Total',
+  name: 'Totals',
   dailyBeanTotal: 0,
   hourlyBeanTotal: [],
   dailyEmployeeTotal: 0,
@@ -150,8 +147,8 @@ kioskTable.hourlyBeanTotalData = function() {
     var count = 0;
       for(var j = 0; j < allKiosks.length; j++) {
         count += allKiosks[j].totalBeansPerHour[i];
-      }
-        this.hourlyBeanTotal.push(parseFloat(count).toFixed(0));
+    }
+    this.hourlyBeanTotal.push(parseFloat(count).toFixed(0));
   }
 };
 
@@ -167,8 +164,8 @@ kioskTable.dailyEmployeeTotalData = function() {
        count += allKiosks[j].employeesPerHour[i];
      }
      this.hourlyEmployeeTotal.push(count);
-   }
- };
+  }
+};
 
 function kioskTableMethods() {
   kioskTable.dailyBeanTotalData();
@@ -178,7 +175,6 @@ function kioskTableMethods() {
 }
 kioskTableMethods();
 
-//reference to the id in html
 var tableElBeans = document.getElementById('populate-beans');
 
 function makeBeansRow(obj) {
@@ -198,8 +194,8 @@ function makeBeansRow(obj) {
         rowEl.appendChild(cellElHours);
         tableElBeans.appendChild(rowEl);
     }
-      tableElBeans.appendChild(rowEl);
-}
+    tableElBeans.appendChild(rowEl);
+  }
 
 function addBeansTotalRow() {
   var rowElTotals = document.createElement('tr');
@@ -223,26 +219,26 @@ function addBeansTotalRow() {
 
 addBeansTotalRow();
 
-var tableEl2 = document.getElementById('populate-employees');
+var tableElEmp = document.getElementById('populate-employees');
 
 function makeEmpRow(obj) {
-  var rowEl = document.createElement('tr');
+  var rowElEmp = document.createElement('tr');
 
   var cellElName = document.createElement('td');
       cellElName.textContent = obj.name;
-      rowEl.appendChild(cellElName);
+      rowElEmp.appendChild(cellElName);
 
-  var cellElEmp = document.createElement('td');
-      cellElEmp.textContent = obj.employeesPerDay;
-      rowEl.appendChild(cellElEmp);
+  var cellElDay = document.createElement('td');
+      cellElDay.textContent = obj.employeesPerDay;
+      rowElEmp.appendChild(cellElDay);
 
     for (var i = 0; i < obj.hoursOpen.length; i++) {
       var cellElHours = document.createElement('td');
         cellElHours.textContent = obj.employeesPerHour[i]
-        rowEl.appendChild(cellElHours);
-        tableEl2.appendChild(rowEl);
+        rowElEmp.appendChild(cellElHours);
+        tableElEmp.appendChild(rowElEmp);
     }
-      tableEl2.appendChild(rowEl);
+      tableElEmp.appendChild(rowElEmp);
 }
 
 function addEmployeeTotalsRow() {
@@ -260,10 +256,11 @@ function addEmployeeTotalsRow() {
     var cellElHours = document.createElement('td');
       cellElHours.textContent = kioskTable.hourlyEmployeeTotal[i]
       rowElTotals.appendChild(cellElHours);
-      tableEl2.appendChild(rowElTotals);
+      tableElEmp.appendChild(rowElTotals);
     }
-    tableEl2.appendChild(rowElTotals);
+    tableElEmp.appendChild(rowElTotals);
 }
+
 addEmployeeTotalsRow();
 
 function makeTable(arr) {
@@ -272,28 +269,31 @@ function makeTable(arr) {
     makeEmpRow(arr[index]);
   }
 }
+
 makeTable(allKiosks);
 
-//form and event listener
-function buttonClick(event) {
-  alert('The button has been clicked! Now your computer will crash.');
+function clearTotals() {
+  kioskTable.dailyBeanTotalData = 0;
+  kioskTable.hourlyBeanTotalData = [];
+  kioskTable.dailyEmployeeTotalData = 0;
+  kioskTable.hourlyEmployeeTotalData = [];
 }
+
+//TODO:handle new beans row method
+
+//TODO:handle new emp row method
 
 function formSubmit(event) {
   event.preventDefault();
-
   var name = event.target.name.value;
   var minCustomer = event.target.minCustomer.value;
   var maxCustomer = event.target.maxCustomer.value;
   var averageCups = event.target.averageCups.value;
   var averagePounds = event.target.averagePounds.value;
-
   var newKiosk = new Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds);
-
   makeAllKiosks(newKiosk);
-  makeBeansRow(newKiosk);
-  makeEmpRow(newKiosk);
+  makeBeansRow(newKiosk); //TODO:call new beans row method
+  makeEmpRow(newKiosk); //TODO:call new emp row method
 }
 
-// button.addEventListener('click', buttonClick);
 form.addEventListener('submit', formSubmit);
