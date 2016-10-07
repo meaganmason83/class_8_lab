@@ -217,8 +217,6 @@ function addBeansTotalRow() {
     tableElBeans.appendChild(rowElTotals);
 }
 
-addBeansTotalRow();
-
 var tableElEmp = document.getElementById('populate-employees');
 
 function makeEmpRow(obj) {
@@ -261,8 +259,6 @@ function addEmployeeTotalsRow() {
     tableElEmp.appendChild(rowElTotals);
 }
 
-addEmployeeTotalsRow();
-
 function makeTable(arr) {
   for (var index in arr) {
     makeBeansRow(arr[index]);
@@ -271,6 +267,8 @@ function makeTable(arr) {
 }
 
 makeTable(allKiosks);
+addBeansTotalRow();
+addEmployeeTotalsRow();
 
 function clearTotals() {
   kioskTable.dailyBeanTotalData = 0;
@@ -285,12 +283,14 @@ function clearTotals() {
 
 function formSubmit(event) {
   event.preventDefault();
+
   var name = event.target.name.value;
   var minCustomer = event.target.minCustomer.value;
   var maxCustomer = event.target.maxCustomer.value;
   var averageCups = event.target.averageCups.value;
   var averagePounds = event.target.averagePounds.value;
   var newKiosk = new Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds);
+
   makeAllKiosks(newKiosk);
   makeBeansRow(newKiosk); //TODO:call new beans row method
   makeEmpRow(newKiosk); //TODO:call new emp row method
