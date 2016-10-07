@@ -5,7 +5,7 @@ var grandTotals = {
   location: 0
 };
 var form = document.getElementById('form');
-var button = document.getElementById('button');
+// var button = document.getElementById('button');
 
 function Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds) {
   this.name = name;
@@ -291,9 +291,9 @@ function formSubmit(event) {
   var newKiosk = new Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds);
 
   makeAllKiosks(newKiosk);
-  makeARow(newKiosk);
-  makeARow2(newKiosk);
+  makeBeansRow(newKiosk);
+  makeEmpRow(newKiosk);
 }
 
-button.addEventListener('click', buttonClick);
+// button.addEventListener('click', buttonClick);
 form.addEventListener('submit', formSubmit);
