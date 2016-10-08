@@ -220,7 +220,7 @@ function addBeansTotalRow() {
 
 }
 
-var tableElEmp = document.getElementById('populate-employees');
+var tableElEmp = document.getElementById('emp-body');
 
 function makeEmpRow(obj) {
   var rowElEmp = document.createElement('tr');
@@ -242,6 +242,8 @@ function makeEmpRow(obj) {
       tableElEmp.appendChild(rowElEmp);
 }
 
+var tabelElEmpTotal = document.getElementById('emp-foot');
+
 function addEmployeeTotalsRow() {
   var rowElTotals = document.createElement('tr');
 
@@ -257,9 +259,9 @@ function addEmployeeTotalsRow() {
     var cellElHours = document.createElement('td');
       cellElHours.textContent = kioskTable.hourlyEmployeeTotal[i]
       rowElTotals.appendChild(cellElHours);
-      tableElEmp.appendChild(rowElTotals);
+      tabelElEmpTotal.appendChild(rowElTotals);
     }
-    tableElEmp.appendChild(rowElTotals);
+    tabelElEmpTotal.appendChild(rowElTotals);
 }
 
 function makeTable(arr) {
@@ -279,10 +281,6 @@ function clearTotals() {
   kioskTable.dailyEmployeeTotalData = 0;
   kioskTable.hourlyEmployeeTotalData = [];
 }
-
-//TODO:handle new beans row method
-
-//TODO:handle new emp row method
 
 function formSubmit(event) {
   event.preventDefault();
