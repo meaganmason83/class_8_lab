@@ -175,7 +175,7 @@ function kioskTableMethods() {
 }
 kioskTableMethods();
 
-var tableElBeans = document.getElementById('populate-beans');
+var tableElBeans = document.getElementById('pounds-body');
 
 function makeBeansRow(obj) {
   var rowEl = document.createElement('tr');
@@ -197,24 +197,27 @@ function makeBeansRow(obj) {
     tableElBeans.appendChild(rowEl);
   }
 
+var tableElTotal = document.getElementById('pounds-foot');
+
 function addBeansTotalRow() {
   var rowElTotals = document.createElement('tr');
 
   var cellElName = document.createElement('td');
-  cellElName.textContent = kioskTable.name;
-  rowElTotals.appendChild(cellElName);
+    cellElName.textContent = kioskTable.name;
+    rowElTotals.appendChild(cellElName);
 
   var cellElTotal = document.createElement('td');
-  cellElTotal.textContent = kioskTable.dailyBeanTotal;
-  rowElTotals.appendChild(cellElTotal);
+    cellElTotal.textContent = kioskTable.dailyBeanTotal;
+    rowElTotals.appendChild(cellElTotal);
 
   for (var i = 0; i < kioskTable.hours.length; i++) {
     var cellElHours = document.createElement('td');
       cellElHours.textContent = kioskTable.hourlyBeanTotal[i]
       rowElTotals.appendChild(cellElHours);
-      tableElBeans.appendChild(rowElTotals);
+      tableElTotal.appendChild(rowElTotals);
     }
-    tableElBeans.appendChild(rowElTotals);
+    tableElTotal.appendChild(rowElTotals);
+
 }
 
 var tableElEmp = document.getElementById('populate-employees');
