@@ -271,10 +271,6 @@ function makeTable(arr) {
   }
 }
 
-makeTable(allKiosks);
-addBeansTotalRow();
-addEmployeeTotalsRow();
-
 function clearTotals() {
   kioskTable.dailyBeanTotalData = 0;
   kioskTable.hourlyBeanTotalData = [];
@@ -282,8 +278,15 @@ function clearTotals() {
   kioskTable.hourlyEmployeeTotalData = [];
 }
 
+makeTable(allKiosks);
+addBeansTotalRow();
+addEmployeeTotalsRow();
+
 function formSubmit(event) {
   event.preventDefault();
+
+  clearTotals();
+
 
   var name = event.target.name.value;
   var minCustomer = event.target.minCustomer.value;
@@ -292,9 +295,11 @@ function formSubmit(event) {
   var averagePounds = event.target.averagePounds.value;
   var newKiosk = new Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds);
 
+
   makeAllKiosks(newKiosk);
-  makeBeansRow(newKiosk); //TODO:call new beans row method
-  makeEmpRow(newKiosk); //TODO:call new emp row method
+  makeBeansRow(newKiosk);
+  makeEmpRow(newKiosk);
+  kioskTableMethods();
 }
 
 form.addEventListener('submit', formSubmit);
