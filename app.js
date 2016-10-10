@@ -157,7 +157,7 @@ kioskTable.dailyEmployeeTotalData = function() {
     this.dailyEmployeeTotal += allKiosks[i].employeesPerDay;
   }
 };
- kioskTable.hourlyEmployeeTotalData = function() {
+kioskTable.hourlyEmployeeTotalData = function() {
    for (var i = 0; i < this.hours.length; i++) {
      var count = 0;
      for (var j = 0; j < allKiosks.length; j++) {
@@ -173,7 +173,15 @@ function kioskTableMethods() {
   kioskTable.dailyEmployeeTotalData();
   kioskTable.hourlyEmployeeTotalData();
 }
+
 kioskTableMethods();
+
+function clearTotals() {
+  kioskTable.dailyBeanTotal = 0;
+  kioskTable.hourlyBeanTotal = [];
+  kioskTable.dailyEmployeeTotal = 0;
+  kioskTable.hourlyEmployeeTotal = [];
+}
 
 var tableElBeans = document.getElementById('pounds-body');
 
@@ -271,22 +279,13 @@ function makeTable(arr) {
   }
 }
 
-function clearTotals() {
-  kioskTable.dailyBeanTotalData = 0;
-  kioskTable.hourlyBeanTotalData = [];
-  kioskTable.dailyEmployeeTotalData = 0;
-  kioskTable.hourlyEmployeeTotalData = [];
-}
-
 makeTable(allKiosks);
 addBeansTotalRow();
 addEmployeeTotalsRow();
 
+
 function formSubmit(event) {
   event.preventDefault();
-
-  clearTotals();
-
 
   var name = event.target.name.value;
   var minCustomer = event.target.minCustomer.value;
@@ -295,11 +294,14 @@ function formSubmit(event) {
   var averagePounds = event.target.averagePounds.value;
   var newKiosk = new Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds);
 
-
   makeAllKiosks(newKiosk);
   makeBeansRow(newKiosk);
-  makeEmpRow(newKiosk);
+  clearTotals();
   kioskTableMethods();
+  addBeansTotalRow();
+  addEmployeeTotalsRow();
+  makeEmpRow(newKiosk);
+
 }
 
 form.addEventListener('submit', formSubmit);
