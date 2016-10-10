@@ -13,104 +13,105 @@ function Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds) {
   this.hoursOpen = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
   this.customerPerHour = [];
   this.customerPerDay = 0;
-  this.totalCustomers = 0;
   this.cupsPerHour = [];
   this.cupsPerDay = 0;
-  this.cupsIntoPounds = [];
-  this.cupsPlusPounds = [];
   this.poundsPerHour = [];
   this.poundsPerDay = 0;
   this.totalBeansPerHour = [];
   this.totalBeansPerDay = 0;
-  this.dailyToGoPackages = 0;
   this.employeesPerHour = [];
   this.employeesPerDay = 0;
-  this.stringsForDOM = [];
-  this.stringsForDOM = [];
-  this.grandTotals = 0; //new property for grandTotals method
+  this.cupsIntoPounds = [];
+  this.cupsPlusPounds = [];
+  this.dailyToGoPackages = 0;
+  // this.totalCustomers = 0; // NOTE: Don't need this. It's a duplicate of this.custoemrsPerDay
+  // this.stringsForDOM = []; // NOTE: Not necessary for rendering table data now
+  // this.stringsForDOM = []; // NOTE: Duplicate
+  // this.grandTotals = 0; // NOTE: Don't need this. Each instance does not need to know the business totals.
   allKiosks.push(this);
 }
 
-Kiosk.prototype.getRandomCustomer = function() {
-  this.getRandomCustomer = function(min, max) {
-    return Math.floor(Math.random() * (max - min) + 1 + min);
-  };
+Kiosk.prototype.getRandomCustomer = function(min, max) {
+  // NOTE: refactored this a little... You were calling the method inside of itself, which was weird.
+  return Math.floor(Math.random() * (max - min) + 1 + min);
+}
 
-  Kiosk.prototype.generateCustomerData = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.customerPerHour.push(this.getRandomCustomer(this.minCustomer, this.maxCustomer));
-      this.customerPerDay += this.customerPerHour[i];
-    }
-  };
-
-  Kiosk.prototype.generateTotalCustomers = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.totalCustomers += this.customerPerHour[i];
-    }
-  };
-
-  Kiosk.prototype.generateCupsData = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.cupsPerHour.push(this.customerPerHour[i] * this.averageCups);
-      this.cupsPerDay += this.cupsPerHour[i];
-    }
-  };
-
-  Kiosk.prototype.generateLbsData = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.poundsPerHour.push(this.customerPerHour[i] * this.averagePounds);
-      this.poundsPerDay += this.poundsPerHour[i];
-    }
-  };
-
-  Kiosk.prototype.generateCupsLbsData = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.cupsIntoPounds.push(this.cupsPerHour[i] / 16);
-    }
-  };
-
-  Kiosk.prototype.generateCupsPlusLbsData = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.cupsPlusPounds.push(this.cupsIntoPounds[i] + this.poundsPerHour[i]);
-    }
-  };
-
-  Kiosk.prototype.generateBeansData = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.totalBeansPerHour.push(parseFloat(this.cupsIntoPounds[i].toFixed(0)) + parseFloat(this.poundsPerHour[i].toFixed(0)));
-      this.totalBeansPerDay += parseFloat(this.totalBeansPerHour[i].toFixed(0));
-    }
-  };
-
-  Kiosk.prototype.generateEmployeeData = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.employeesPerHour.push(Math.ceil(this.customerPerHour[i] / 30));
-      this.employeesPerDay += this.employeesPerHour[i];
-    }
-  };
-
-  Kiosk.prototype.generateStringsForDOM = function() {
-    for (var i = 0; i < this.hoursOpen.length; i++) {
-      this.stringsForDOM.push(this.hoursOpen[i] + ': ' + parseFloat(this.totalBeansPerHour[i].toFixed(2)) + ' lbs [' + parseFloat(this.customerPerHour[i].toFixed(0)) + ' customers, ' + parseFloat(this.cupsPerHour[i].toFixed(1)) + ' cups (' + parseFloat(this.cupsIntoPounds[i].toFixed(1)) + ' lbs), ' + parseFloat(this.poundsPerHour[i].toFixed(0)) + ' lbs to-go]');
-    }
-    this.stringsForDOM.push('Total customers at ' + this.name + ': ' + this.totalCustomers);
-    this.stringsForDOM.push('Total cups sold at ' + this.name + ': ' + parseFloat(this.cupsPerDay.toFixed(2)));
-    this.stringsForDOM.push('Total to-go pound packages sold at ' + this.name + ': ' + parseFloat(this.poundsPerDay.toFixed(0)));
-    this.stringsForDOM.push('Total pounds of beans needed at ' + this.name + ': ' + parseFloat(this.totalBeansPerDay.toFixed(0)));
+Kiosk.prototype.generateCustomerData = function() {
+  for (var i = 0; i < this.hoursOpen.length; i++) {
+    this.customerPerHour.push(this.getRandomCustomer(this.minCustomer, this.maxCustomer));
+    this.customerPerDay += this.customerPerHour[i];
   }
 };
+
+  // NOTE:  Duplicate of this.customerPerDay
+  // Kiosk.prototype.generateTotalCustomers = function() {
+  //   for (var i = 0; i < this.hoursOpen.length; i++) {
+  //     this.totalCustomers += this.customerPerHour[i];
+  //   }
+  // };
+
+Kiosk.prototype.generateCupsData = function() {
+  for (var i = 0; i < this.hoursOpen.length; i++) {
+    this.cupsPerHour.push(this.customerPerHour[i] * this.averageCups);
+    this.cupsPerDay += this.cupsPerHour[i];
+  }
+};
+
+Kiosk.prototype.generateLbsData = function() {
+  for (var i = 0; i < this.hoursOpen.length; i++) {
+    this.poundsPerHour.push(this.customerPerHour[i] * this.averagePounds);
+    this.poundsPerDay += this.poundsPerHour[i];
+  }
+};
+
+Kiosk.prototype.generateCupsLbsData = function() {
+  for (var i = 0; i < this.hoursOpen.length; i++) {
+    this.cupsIntoPounds.push(this.cupsPerHour[i] / 16);
+  }
+};
+
+Kiosk.prototype.generateCupsPlusLbsData = function() {
+  for (var i = 0; i < this.hoursOpen.length; i++) {
+    this.cupsPlusPounds.push(this.cupsIntoPounds[i] + this.poundsPerHour[i]);
+  }
+};
+
+Kiosk.prototype.generateBeansData = function() {
+  for (var i = 0; i < this.hoursOpen.length; i++) {
+    this.totalBeansPerHour.push(parseFloat(this.cupsIntoPounds[i].toFixed(0)) + parseFloat(this.poundsPerHour[i].toFixed(0)));
+    this.totalBeansPerDay += parseFloat(this.totalBeansPerHour[i].toFixed(0));
+  }
+};
+
+Kiosk.prototype.generateEmployeeData = function() {
+  for (var i = 0; i < this.hoursOpen.length; i++) {
+    this.employeesPerHour.push(Math.ceil(this.customerPerHour[i] / 30));
+    this.employeesPerDay += this.employeesPerHour[i];
+  }
+};
+
+// NOTE: Don't need this any longer since we're not rendering lists.
+//   Kiosk.prototype.generateStringsForDOM = function() {
+//     for (var i = 0; i < this.hoursOpen.length; i++) {
+//       this.stringsForDOM.push(this.hoursOpen[i] + ': ' + parseFloat(this.totalBeansPerHour[i].toFixed(2)) + ' lbs [' + parseFloat(this.customerPerHour[i].toFixed(0)) + ' customers, ' + parseFloat(this.cupsPerHour[i].toFixed(1)) + ' cups (' + parseFloat(this.cupsIntoPounds[i].toFixed(1)) + ' lbs), ' + parseFloat(this.poundsPerHour[i].toFixed(0)) + ' lbs to-go]');
+//     }
+//     this.stringsForDOM.push('Total customers at ' + this.name + ': ' + this.totalCustomers);
+//     this.stringsForDOM.push('Total cups sold at ' + this.name + ': ' + parseFloat(this.cupsPerDay.toFixed(2)));
+//     this.stringsForDOM.push('Total to-go pound packages sold at ' + this.name + ': ' + parseFloat(this.poundsPerDay.toFixed(0)));
+//     this.stringsForDOM.push('Total pounds of beans needed at ' + this.name + ': ' + parseFloat(this.totalBeansPerDay.toFixed(0)));
+//   }
 
 Kiosk.prototype.callMethods = function() {
   this.getRandomCustomer();
   this.generateCustomerData();
-  this.generateTotalCustomers();
+  // this.generateTotalCustomers(); // NOTE: Not necessary
   this.generateCupsData();
   this.generateLbsData();
   this.generateCupsLbsData();
   this.generateCupsPlusLbsData();
   this.generateBeansData();
   this.generateEmployeeData();
-  this.generateStringsForDOM();
+  // this.generateStringsForDOM(); // NOTE: Not necessary
 }
 
 new Kiosk('Pike Place Market', 14, 35, 1.2, 0.34);
@@ -143,10 +144,11 @@ kioskTable.dailyBeanTotalData = function() {
 };
 
 kioskTable.hourlyBeanTotalData = function() {
+  // NOTE: Fixed some indentation, check that your linter is working
   for (var i = 0; i < this.hours.length; i++) {
     var count = 0;
-      for(var j = 0; j < allKiosks.length; j++) {
-        count += allKiosks[j].totalBeansPerHour[i];
+    for(var j = 0; j < allKiosks.length; j++) {
+      count += allKiosks[j].totalBeansPerHour[i];
     }
     this.hourlyBeanTotal.push(parseFloat(count).toFixed(0));
   }
@@ -158,12 +160,13 @@ kioskTable.dailyEmployeeTotalData = function() {
   }
 };
 kioskTable.hourlyEmployeeTotalData = function() {
-   for (var i = 0; i < this.hours.length; i++) {
-     var count = 0;
-     for (var j = 0; j < allKiosks.length; j++) {
-       count += allKiosks[j].employeesPerHour[i];
-     }
-     this.hourlyEmployeeTotal.push(count);
+  // NOTE: Fixed some indentation, check that your linter is working
+  for (var i = 0; i < this.hours.length; i++) {
+    var count = 0;
+    for (var j = 0; j < allKiosks.length; j++) {
+      count += allKiosks[j].employeesPerHour[i];
+    }
+    this.hourlyEmployeeTotal.push(count);
   }
 };
 
@@ -186,73 +189,76 @@ function clearTotals() {
 var tableElBeans = document.getElementById('pounds-body');
 
 function makeBeansRow(obj) {
+  // NOTE: Fixed some indentation, check that your linter is working
   var rowEl = document.createElement('tr');
 
   var cellElName = document.createElement('td');
-      cellElName.textContent = obj.name;
-      rowEl.appendChild(cellElName);
+  cellElName.textContent = obj.name;
+  rowEl.appendChild(cellElName);
 
   var cellElBeans = document.createElement('td');
-      cellElBeans.textContent = obj.totalBeansPerDay;
-      rowEl.appendChild(cellElBeans);
+  cellElBeans.textContent = obj.totalBeansPerDay;
+  rowEl.appendChild(cellElBeans);
 
-    for (var i = 0; i < obj.hoursOpen.length; i++) {
-      var cellElHours = document.createElement('td');
-        cellElHours.textContent = obj.totalBeansPerHour[i]
-        rowEl.appendChild(cellElHours);
-        tableElBeans.appendChild(rowEl);
-    }
+  for (var i = 0; i < obj.hoursOpen.length; i++) {
+    var cellElHours = document.createElement('td');
+    cellElHours.textContent = obj.totalBeansPerHour[i]
+    rowEl.appendChild(cellElHours);
     tableElBeans.appendChild(rowEl);
   }
+  tableElBeans.appendChild(rowEl);
+}
 
 var tableElTotal = document.getElementById('pounds-foot');
 
 function addBeansTotalRow() {
+  // NOTE: Fixed some indentation, check that your linter is working
   var rowElTotals = document.createElement('tr');
 
   var cellElName = document.createElement('td');
-    cellElName.textContent = kioskTable.name;
-    rowElTotals.appendChild(cellElName);
+  cellElName.textContent = kioskTable.name;
+  rowElTotals.appendChild(cellElName);
 
   var cellElTotal = document.createElement('td');
-    cellElTotal.textContent = kioskTable.dailyBeanTotal;
-    rowElTotals.appendChild(cellElTotal);
+  cellElTotal.textContent = kioskTable.dailyBeanTotal;
+  rowElTotals.appendChild(cellElTotal);
 
   for (var i = 0; i < kioskTable.hours.length; i++) {
     var cellElHours = document.createElement('td');
-      cellElHours.textContent = kioskTable.hourlyBeanTotal[i]
-      rowElTotals.appendChild(cellElHours);
-      tableElTotal.appendChild(rowElTotals);
-    }
+    cellElHours.textContent = kioskTable.hourlyBeanTotal[i]
+    rowElTotals.appendChild(cellElHours);
     tableElTotal.appendChild(rowElTotals);
-
+  }
+  tableElTotal.appendChild(rowElTotals);
 }
 
 var tableElEmp = document.getElementById('emp-body');
 
 function makeEmpRow(obj) {
+  // NOTE: Fixed some indentation, check that your linter is working
   var rowElEmp = document.createElement('tr');
 
   var cellElName = document.createElement('td');
-      cellElName.textContent = obj.name;
-      rowElEmp.appendChild(cellElName);
+  cellElName.textContent = obj.name;
+  rowElEmp.appendChild(cellElName);
 
   var cellElDay = document.createElement('td');
-      cellElDay.textContent = obj.employeesPerDay;
-      rowElEmp.appendChild(cellElDay);
+  cellElDay.textContent = obj.employeesPerDay;
+  rowElEmp.appendChild(cellElDay);
 
-    for (var i = 0; i < obj.hoursOpen.length; i++) {
-      var cellElHours = document.createElement('td');
-        cellElHours.textContent = obj.employeesPerHour[i]
-        rowElEmp.appendChild(cellElHours);
-        tableElEmp.appendChild(rowElEmp);
-    }
-      tableElEmp.appendChild(rowElEmp);
+  for (var i = 0; i < obj.hoursOpen.length; i++) {
+    var cellElHours = document.createElement('td');
+    cellElHours.textContent = obj.employeesPerHour[i]
+    rowElEmp.appendChild(cellElHours);
+    tableElEmp.appendChild(rowElEmp);
+  }
+  tableElEmp.appendChild(rowElEmp);
 }
 
 var tabelElEmpTotal = document.getElementById('emp-foot');
 
 function addEmployeeTotalsRow() {
+  // NOTE: Fixed some indentation, check that your linter is working
   var rowElTotals = document.createElement('tr');
 
   var cellElName = document.createElement('td');
@@ -265,11 +271,11 @@ function addEmployeeTotalsRow() {
 
   for (var i = 0; i < kioskTable.hours.length; i++) {
     var cellElHours = document.createElement('td');
-      cellElHours.textContent = kioskTable.hourlyEmployeeTotal[i]
-      rowElTotals.appendChild(cellElHours);
-      tabelElEmpTotal.appendChild(rowElTotals);
-    }
+    cellElHours.textContent = kioskTable.hourlyEmployeeTotal[i]
+    rowElTotals.appendChild(cellElHours);
     tabelElEmpTotal.appendChild(rowElTotals);
+  }
+  tabelElEmpTotal.appendChild(rowElTotals);
 }
 
 function makeTable(arr) {
@@ -294,14 +300,17 @@ function formSubmit(event) {
   var averagePounds = event.target.averagePounds.value;
   var newKiosk = new Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds);
 
-  makeAllKiosks(newKiosk);
+  newKiosk.callMethods(); // NOTE: Call this so new kiosk will populate it's data
+  document.getElementById('pounds-foot').innerHTML = ''; // NOTE: Clear out the row for totals in the foot.
+  document.getElementById('emp-foot').innerHTML = ''; // NOTE: Clear out the row for totals in the foot.
+
+  // makeAllKiosks(newKiosk); // NOTE: We don't need to recreate all of the data for kiosks again, and there's not parameter for that function.
   makeBeansRow(newKiosk);
   clearTotals();
   kioskTableMethods();
   addBeansTotalRow();
   addEmployeeTotalsRow();
   makeEmpRow(newKiosk);
-
 }
 
 form.addEventListener('submit', formSubmit);
