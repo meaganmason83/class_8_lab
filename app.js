@@ -24,17 +24,12 @@ function Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds) {
   this.cupsIntoPounds = [];
   this.cupsPlusPounds = [];
   this.dailyToGoPackages = 0;
-  // this.totalCustomers = 0; // NOTE: Don't need this. It's a duplicate of this.custoemrsPerDay
-  // this.stringsForDOM = []; // NOTE: Not necessary for rendering table data now
-  // this.stringsForDOM = []; // NOTE: Duplicate
-  // this.grandTotals = 0; // NOTE: Don't need this. Each instance does not need to know the business totals.
   allKiosks.push(this);
 }
 
 Kiosk.prototype.getRandomCustomer = function(min, max) {
-  // NOTE: refactored this a little... You were calling the method inside of itself, which was weird.
   return Math.floor(Math.random() * (max - min) + 1 + min);
-}
+};
 
 Kiosk.prototype.generateCustomerData = function() {
   for (var i = 0; i < this.hoursOpen.length; i++) {
@@ -42,13 +37,6 @@ Kiosk.prototype.generateCustomerData = function() {
     this.customerPerDay += this.customerPerHour[i];
   }
 };
-
-  // NOTE:  Duplicate of this.customerPerDay
-  // Kiosk.prototype.generateTotalCustomers = function() {
-  //   for (var i = 0; i < this.hoursOpen.length; i++) {
-  //     this.totalCustomers += this.customerPerHour[i];
-  //   }
-  // };
 
 Kiosk.prototype.generateCupsData = function() {
   for (var i = 0; i < this.hoursOpen.length; i++) {
@@ -89,17 +77,6 @@ Kiosk.prototype.generateEmployeeData = function() {
     this.employeesPerDay += this.employeesPerHour[i];
   }
 };
-
-// NOTE: Don't need this any longer since we're not rendering lists.
-//   Kiosk.prototype.generateStringsForDOM = function() {
-//     for (var i = 0; i < this.hoursOpen.length; i++) {
-//       this.stringsForDOM.push(this.hoursOpen[i] + ': ' + parseFloat(this.totalBeansPerHour[i].toFixed(2)) + ' lbs [' + parseFloat(this.customerPerHour[i].toFixed(0)) + ' customers, ' + parseFloat(this.cupsPerHour[i].toFixed(1)) + ' cups (' + parseFloat(this.cupsIntoPounds[i].toFixed(1)) + ' lbs), ' + parseFloat(this.poundsPerHour[i].toFixed(0)) + ' lbs to-go]');
-//     }
-//     this.stringsForDOM.push('Total customers at ' + this.name + ': ' + this.totalCustomers);
-//     this.stringsForDOM.push('Total cups sold at ' + this.name + ': ' + parseFloat(this.cupsPerDay.toFixed(2)));
-//     this.stringsForDOM.push('Total to-go pound packages sold at ' + this.name + ': ' + parseFloat(this.poundsPerDay.toFixed(0)));
-//     this.stringsForDOM.push('Total pounds of beans needed at ' + this.name + ': ' + parseFloat(this.totalBeansPerDay.toFixed(0)));
-//   }
 
 Kiosk.prototype.callMethods = function() {
   this.getRandomCustomer();
@@ -144,7 +121,6 @@ kioskTable.dailyBeanTotalData = function() {
 };
 
 kioskTable.hourlyBeanTotalData = function() {
-  // NOTE: Fixed some indentation, check that your linter is working
   for (var i = 0; i < this.hours.length; i++) {
     var count = 0;
     for(var j = 0; j < allKiosks.length; j++) {
@@ -160,7 +136,6 @@ kioskTable.dailyEmployeeTotalData = function() {
   }
 };
 kioskTable.hourlyEmployeeTotalData = function() {
-  // NOTE: Fixed some indentation, check that your linter is working
   for (var i = 0; i < this.hours.length; i++) {
     var count = 0;
     for (var j = 0; j < allKiosks.length; j++) {
@@ -189,7 +164,6 @@ function clearTotals() {
 var tableElBeans = document.getElementById('pounds-body');
 
 function makeBeansRow(obj) {
-  // NOTE: Fixed some indentation, check that your linter is working
   var rowEl = document.createElement('tr');
 
   var cellElName = document.createElement('td');
@@ -212,7 +186,6 @@ function makeBeansRow(obj) {
 var tableElTotal = document.getElementById('pounds-foot');
 
 function addBeansTotalRow() {
-  // NOTE: Fixed some indentation, check that your linter is working
   var rowElTotals = document.createElement('tr');
 
   var cellElName = document.createElement('td');
@@ -235,7 +208,6 @@ function addBeansTotalRow() {
 var tableElEmp = document.getElementById('emp-body');
 
 function makeEmpRow(obj) {
-  // NOTE: Fixed some indentation, check that your linter is working
   var rowElEmp = document.createElement('tr');
 
   var cellElName = document.createElement('td');
@@ -258,7 +230,6 @@ function makeEmpRow(obj) {
 var tabelElEmpTotal = document.getElementById('emp-foot');
 
 function addEmployeeTotalsRow() {
-  // NOTE: Fixed some indentation, check that your linter is working
   var rowElTotals = document.createElement('tr');
 
   var cellElName = document.createElement('td');
@@ -300,11 +271,10 @@ function formSubmit(event) {
   var averagePounds = event.target.averagePounds.value;
   var newKiosk = new Kiosk(name, minCustomer, maxCustomer, averageCups, averagePounds);
 
-  newKiosk.callMethods(); // NOTE: Call this so new kiosk will populate it's data
-  document.getElementById('pounds-foot').innerHTML = ''; // NOTE: Clear out the row for totals in the foot.
-  document.getElementById('emp-foot').innerHTML = ''; // NOTE: Clear out the row for totals in the foot.
+  newKiosk.callMethods();
+  document.getElementById('pounds-foot').innerHTML = '';
+  document.getElementById('emp-foot').innerHTML = '';
 
-  // makeAllKiosks(newKiosk); // NOTE: We don't need to recreate all of the data for kiosks again, and there's not parameter for that function.
   makeBeansRow(newKiosk);
   clearTotals();
   kioskTableMethods();
