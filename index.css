@@ -1,0 +1,84 @@
+body {
+  font-size: 25px;
+  background-color: #476555;
+}
+
+img {
+  padding-top: 100px;
+}
+
+.pic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+  padding-top: 80px;
+  padding-bottom: 20px;
+}
+
+img.beans {
+  padding-right: 15px;
+}
+
+img.beans {
+  padding-left: 15px;
+}
+
+hr.style1 {
+  border-top: 3px solid #741D16;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+hr.style2 {
+  border-top: 3px solid #741D16;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+hr.style3 {
+  border-top: 3px solid #741D16;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+h1 {
+  text-align: center;
+  color: #741D16;
+  font-size: 50px;
+  font-family: 'Shadows Into Light', cursive;
+  margin-bottom: 0px;
+}
+
+h3 {
+  text-align: center;
+  color: black;
+  font-size: 30px;
+  font-family: 'Shadows Into Light', cursive;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+ul {
+  list-style-type: square;
+  margin-left: 500px;
+  color: black;
+  font-size: 30px;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+a {
+  margin-left: 500px;
+}
+
+p {
+  text-align: center;
+  margin-top: 0px;
+  margin-left: 80px;
+  margin-right: 80px;
+  color: black;
+  font-family: 'Shadows Into Light', cursive;
+}

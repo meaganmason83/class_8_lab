@@ -1,101 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Campfire Coffee Data Page</title>
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light"><Delicious><rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="style.css" value="">
-</head>
-<body>
-  <header>
-    <img class='pic' src="https://github.com/codefellows/seattle-201n6/blob/master/class-06-dom--objects--domain_modeling/lab/assets/campfire-coffee.jpg?raw=true">
-  </header>
-  <body>
-    <main>
-      <h1>Campfire Coffee Data Page</h1>
-      <form id="form" autocomplete="off">
-        <fieldset>
-          <legend>Add a new Kiosk!</legend>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to Campfire Coffee</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <body>
+    <h1>Welcome to Campfire Coffee!</h1>
+    <img class="pic" src="https://github.com/codefellows/seattle-201n6/blob/master/class-06-dom--objects--domain_modeling/lab/assets/campfire-coffee.jpg?raw=true">
+    <br>
+    <hr class="style1">
+    <br>
+    <div>
+    <p><img src="http://s3.wallippo.com/thumbs/300x250/coffee-beans-heart-love-shaped-39fbc9e02640fc2f4891af809553af35.jpeg" class="beans" width="100" height="100" align:"left"/>Meet Jo Kuppa,</p>
+    </div>
+    <div id="intro">
+      <p>While camping one weekend, Jo noticed that the first cup of coffee from the morning campfire was uniquely wonderful and delicious. She thought about why that might be, and realized that it was the combination of the coffee aroma with the smoke from the campfire that created a distinctive flavor blend.
+    <br />
+    <br />
+    Jo sought to recreate that flavor back in civilization, and over time developed a process for roasting coffee beans over an open wood fire. She also discovered that grinding the beans while they were still warm was the key to getting the flavor she wanted.
+    <br />
+    <img src="https://github.com/codefellows/seattle-201n6/blob/master/class-06-dom--objects--domain_modeling/lab/assets/campfire.jpg?raw=true" class="fire" width="400" height="300" align:"center">
+    </p>
+  </div>
+  <br>
+  <hr class="style2">
+  <br>
+    <h1> - Locations & Hours - </h1>
+    <p>6:00am to 9:00pm, 7 days a week!</p>
 
-          <div><label for="name">Kiosk Location:</label>
-          <input type="text" name="name" required></div>
+    <ul>
+      <li>Pike Place Market</li>
+      <li>Capitol Hill</li>
+      <li>Seattle Public Library</li>
+      <li>South Lake Union</li>
+      <li>Sea-Tac Airport</li>
+      </ul>
 
-          <div><label for="minCustomer">Minimum Customer</label>
-          <input type="number" name="minCustomer" min="0" required></div>
+      <br>
+      <hr class="style3">
+      <br>
+    <a href="data.html/">Campfire Coffee Data Page</a>
+    <img class='pic' src="https://github.com/codefellows/seattle-201n6/blob/master/class-06-dom--objects--domain_modeling/lab/assets/campfire-family.jpg?raw=true">
 
-          <div><label for="maxCustomer">Maximum Customer</label>
-          <input type="number" name="maxCustomer" min="0" required></div>
-
-          <div><label for="averageCups">Average Cups</label>
-          <input type="number" name="averageCups" min="0.0" step="any" required></div>
-
-          <div><label for="averagePounds">Average Pounds of Beans</label>
-          <input type="number" name="averagePounds" min="0.00" step="any" required></div>
-
-          <input type="submit" value="Add the item">
-        </fieldset>
-      </form>
-      <h1>Beans Needed By Location Each Day</h1>
-      <table>
-      <thead id="pounds-head"
-        <tr>
-          <th></th>
-          <th>Daily Location Total</th>
-          <th>6:00am</th>
-          <th>7:00am</th>
-          <th>8:00am</th>
-          <th>9:00am</th>
-          <th>10:00am</th>
-          <th>11:00am</th>
-          <th>12:00pm</th>
-          <th>1:00pm</th>
-          <th>2:00pm</th>
-          <th>3:00pm</th>
-          <th>4:00pm</th>
-          <th>5:00pm</th>
-          <th>6:00pm</th>
-          <th>7:00pm</th>
-          <th>8:00pm</th>
-        </tr>
-      </thead>
-      <tbody id="pounds-body">
-
-      </tbody>
-      <tfoot id="pounds-foot">
-      </tfoot>
-
-      </table>
-      <h1>Baristas Needed By Location Each Day</h1>
-      <table>
-        <thead id="emp-head">
-        <tr>
-          <th></th>
-          <th>Total</th>
-          <th>6:00am</th>
-          <th>7:00am</th>
-          <th>8:00am</th>
-          <th>9:00am</th>
-          <th>10:00am</th>
-          <th>11:00am</th>
-          <th>12:00pm</th>
-          <th>1:00pm</th>
-          <th>2:00pm</th>
-          <th>3:00pm</th>
-          <th>4:00pm</th>
-          <th>5:00pm</th>
-          <th>6:00pm</th>
-          <th>7:00pm</th>
-          <th>8:00pm</th>
-        </tr>
-      </thead>
-      <tbody id="emp-body">
-      </tbody>
-      <tfoot id="emp-foot">
-      </tfoot>
-      </table>
-    </main>
-    <script type="text/javascript" src="app.js">
+    <img class='pic' src="https://github.com/codefellows/seattle-201n6/blob/master/class-06-dom--objects--domain_modeling/lab/assets/campsite-tent-night.jpg?raw=true">
+    <script type="text/javascript" src="index_app.js">
     </script>
   </body>
-  </html>
+</html>
