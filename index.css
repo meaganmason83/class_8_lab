@@ -23,8 +23,20 @@ img.beans {
   padding-right: 15px;
 }
 
-img.beans {
-  padding-left: 15px;
+img.fire {
+  padding-top: 45px;
+}
+
+img.family {
+  margin-right: 30px;
+}
+
+img.tent {
+  margin-left: 30px;
+}
+
+a:hover {
+  background-color: green;
 }
 
 hr.style1 {
@@ -51,6 +63,7 @@ h1 {
   font-size: 50px;
   font-family: 'Shadows Into Light', cursive;
   margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 h3 {
