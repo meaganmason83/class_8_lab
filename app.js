@@ -81,14 +81,12 @@ Kiosk.prototype.generateEmployeeData = function() {
 Kiosk.prototype.callMethods = function() {
   this.getRandomCustomer();
   this.generateCustomerData();
-  // this.generateTotalCustomers(); // NOTE: Not necessary
   this.generateCupsData();
   this.generateLbsData();
   this.generateCupsLbsData();
   this.generateCupsPlusLbsData();
   this.generateBeansData();
   this.generateEmployeeData();
-  // this.generateStringsForDOM(); // NOTE: Not necessary
 }
 
 new Kiosk('Pike Place Market', 14, 35, 1.2, 0.34);
